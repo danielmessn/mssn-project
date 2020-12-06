@@ -30,6 +30,7 @@ session_start();
 			<?php elseif ($post['published'] == false): ?>
                 <h2 class="post-title">Sorry... This post has not been published</h2>
 			<?php else: ?>
+                <img src="<?php echo '/images/' . $post['image']; ?>" class="post_image" alt="">
 				<h2 class="post-title"><?php echo $post['title']; ?></h2>
 				<div class="post-body-div">
 					<?php echo html_entity_decode($post['body']); ?>
@@ -39,6 +40,10 @@ session_start();
 			<!-- // full post div -->
 			
 			<!-- comments section -->
+
+            
+
+
 			<!--  coming soon ...  -->
 		</div>
 	</div>
