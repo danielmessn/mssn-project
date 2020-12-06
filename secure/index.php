@@ -10,6 +10,9 @@ session_start();
 <head>
    <title>Blog Name</title>
    <?php include (dirname(__FILE__).'/components/head.php');?>
+   <?php require_once('config.php') ?>
+   <?php require_once(ROOT_PATH .'/includes/public_functions.php') ?>
+   <?php $posts = getPublishedPosts(); ?>
 </head>
 <body>
    <?php include (dirname(__FILE__).'/components/navbar.php');?>
@@ -18,31 +21,24 @@ session_start();
       <p>Blog for Management of System Security and Networks</p>
    </div>
    <div class="container">
-      <div class="row">
-         <div class="col-md-4">
-            <h3>Column 1</h3>
-            <p>Lorem ipsum dolor..</p>
+      <div class="row content">
+         
+      <?php foreach ($posts as $post): ?>
+         <div class="col-md-6 post">
+            <img src="<?php echo '/images/' . $post['image']; ?>" class="post_image" alt="">
+            <a href="single_post.php?post-slug=<?php echo $post['slug']; ?>">
+               <div class="post_info">
+                  <h3><?php echo $post['title'] ?></h3>
+                  <div class="info">
+                     <span><?php echo date("F j, Y ", strtotime($post["created_at"])); ?></span>
+                     <span class="read_more">Read more...</span>
+                  </div>
+               </div>
+            </a>
          </div>
-         <div class="col-md-4">
-            <h3>Column 2</h3>
-            <p>Lorem ipsum dolor..</p>
-         </div>
-         <div class="col-md-4">
-            <h3>Column 3</h3>
-            <p>Lorem ipsum dolor..</p>
-         </div>
-         <div class="col-md-4">
-            <h3>Column 4</h3>
-            <p>Lorem ipsum dolor..</p>
-         </div>
-         <div class="col-md-4">
-            <h3>Column 5</h3>
-            <p>Lorem ipsum dolor..</p>
-         </div>
-         <div class="col-md-4">
-            <h3>Column 6</h3>
-            <p>Lorem ipsum dolor..</p>
-         </div>
+      <?php endforeach ?>
+
+
       </div>
    </div>
 

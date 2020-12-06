@@ -17,4 +17,7 @@ if (!is_null($mysqli->connect_error))
    die();
 }
 
+define ('ROOT_PATH', realpath(dirname(__FILE__)));
+define('BASE_URL', 'https://mssn-project-secure/');
+
 ?>

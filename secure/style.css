@@ -10,3 +10,18 @@ h1 {
 #username{
     margin-bottom: 0;
 }
+
+
+/*Content*/
+img {
+    max-width: 80%;
+}
+
+.post {
+    padding: 1em;
+}
+
+.content-title {
+    margin-top: 1em;
+}
+
