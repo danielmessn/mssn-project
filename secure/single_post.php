@@ -15,6 +15,7 @@ session_start();
 	}
     ?>
     <title><?php echo $post['title'] ?></title>
+	<?php $comments = getComments($post['id']); ?>
 </head>
 <body>
 <?php include (dirname(__FILE__).'/components/navbar.php');?>
@@ -38,13 +39,22 @@ session_start();
 			<?php endif ?>
 			</div>
 			<!-- // full post div -->
-			
+                
 			<!-- comments section -->
-
-            
-
-
-			<!--  coming soon ...  -->
+			<div class="comments mt-5">
+				<h4>Comments</h4>
+				<?php foreach ($comments as $comment): ?>
+					<div>
+						<?php $answers = getCommentAnswers($comment['id']); ?>
+						<p><?php echo $comment['username']?><br><?php echo $comment['content']?></p>
+						<div class="answers ml-5">
+							<?php foreach ($answers as $answer): ?>
+								<p><?php echo $answer['username']?><br><?php echo $answer['content']?></p>
+							<?php endforeach ?>
+						</div>
+					</div>
+				<?php endforeach ?>
+			</div>
 		</div>
 	</div>
 </div>

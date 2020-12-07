@@ -35,4 +35,38 @@ function getPost($slug){
 	return $post;
 }
 
+
+/* * * * * * * * * * * * * * *
+* Returns comments of a post
+* * * * * * * * * * * * * * */
+function getComments($id) {
+	// use global $conn object in function
+	global $mysqli;
+	$comments = null;
+
+	$sql = "SELECT comments.id, username, content FROM comments INNER JOIN users ON comments.user_id = users.id WHERE post_id = '$id' AND comment_id is null";
+	$result = $mysqli->query($sql);
+
+	// fetch all posts as an associative array called $posts
+	if($result)
+		$comments = $result->fetch_all(MYSQLI_ASSOC);
+
+	return $comments;
+}
+
+function getCommentAnswers($id) {
+	// use global $conn object in function
+	global $mysqli;
+	$answers = null;
+
+	$sql = "SELECT comments.id, username, content FROM comments INNER JOIN users ON comments.user_id = users.id WHERE comment_id = '$id'";
+	$result = $mysqli->query($sql);
+
+	// fetch all posts as an associative array called $posts
+	if($result)
+		$answers = $result->fetch_all(MYSQLI_ASSOC);
+
+	return $answers;
+}
+
 ?>
