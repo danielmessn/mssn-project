@@ -44,7 +44,7 @@ function getComments($id) {
 	global $mysqli;
 	$comments = null;
 
-	$sql = "SELECT comments.id, username, content FROM comments INNER JOIN users ON comments.user_id = users.id WHERE post_id = '$id' AND comment_id is null";
+	$sql = "SELECT comments.id, username, content FROM comments INNER JOIN users ON comments.user_id = users.id WHERE post_id = '$id' AND comment_id is null order by comments.created_at desc";
 	$result = $mysqli->query($sql);
 
 	// fetch all posts as an associative array called $posts
@@ -59,7 +59,7 @@ function getCommentAnswers($id) {
 	global $mysqli;
 	$answers = null;
 
-	$sql = "SELECT comments.id, username, content FROM comments INNER JOIN users ON comments.user_id = users.id WHERE comment_id = '$id'";
+	$sql = "SELECT comments.id, username, content FROM comments INNER JOIN users ON comments.user_id = users.id WHERE comment_id = '$id' order by comments.created_at desc";
 	$result = $mysqli->query($sql);
 
 	// fetch all posts as an associative array called $posts
