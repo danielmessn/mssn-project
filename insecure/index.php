@@ -18,7 +18,7 @@ session_start();
    <?php include (dirname(__FILE__).'/components/navbar.php');?>
    <div class="jumbotron text-center">
       <h1>Blog</h1>
-      <p>Blog for Management of System Security and Networks</p>
+      <p>Sample blog for the project</p>
    </div>
    <div class="container">
       <div class="row content">
