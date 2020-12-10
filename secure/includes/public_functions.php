@@ -7,7 +7,7 @@ function getPublishedPosts() {
 	global $mysqli;
 	$posts = null;
 
-	$sql = "SELECT * FROM posts WHERE published=true";
+	$sql = "SELECT * FROM posts WHERE published=true order by created_at desc";
 	$result = $mysqli->query($sql);
 
 	// fetch all posts as an associative array called $posts
