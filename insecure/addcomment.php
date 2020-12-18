@@ -8,12 +8,31 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
     exit;
 };
 
+
 require_once('config.php');
 
-$content = $mysqli->real_escape_string($_POST["textComment"]);
-$postid = $mysqli->real_escape_string($_POST["postid"]);
+//variables can also passed by url
+
+if (isset($_POST["textComment"])) 
+    $content = $mysqli->real_escape_string($_POST["textComment"]);
+else    
+    $content = $mysqli->real_escape_string($_GET["textComment"]);
+
+
+if (isset($_POST["postid"])) 
+    $postid = $mysqli->real_escape_string($_POST["postid"]);
+else
+    $postid = $mysqli->real_escape_string($_GET["postid"]);
+
+
+if (isset($_POST["postslug"])) 
+    $postslug = $mysqli->real_escape_string($_POST["postslug"]);
+else
+    $postslug = $mysqli->real_escape_string($_GET["postslug"]);
+
+
 $userid = $_SESSION["id"];
-$postslug = $_POST["postslug"];
+
 
 if(empty(trim($content))){
     echo "Comment can`t be empty!";
