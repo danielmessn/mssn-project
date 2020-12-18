@@ -2,6 +2,12 @@
 
 // Initialize the session
 session_start();
+
+$par_category = "";
+
+//If there is the parameter category in the url
+if (isset($_GET["category"]))     
+    $par_category = $_GET["category"];
  
 ?>
 
@@ -12,7 +18,7 @@ session_start();
    <?php include (dirname(__FILE__).'/components/head.php');?>
    <?php require_once('config.php') ?>
    <?php require_once(ROOT_PATH .'/includes/public_functions.php') ?>
-   <?php $posts = getPublishedPosts(); ?>
+   <?php $posts = getPublishedPosts($par_category); $categories = getCategories(); ?>
 </head>
 <body>
    <?php include (dirname(__FILE__).'/components/navbar.php');?>
@@ -22,6 +28,14 @@ session_start();
    </div>
    <div class="container">
       <div class="row content">
+
+      <div id="categories" class="col-12 mb-5">
+         <a href="index.php" class="btn btn-primary">All</a>
+
+         <?php foreach ($categories as $category): ?>
+            <a class="btn btn-primary" href="index.php?category=<?php echo $category['id']?>"><?php echo $category['categoryname'];?></a>
+         <?php endforeach ?>
+      </div>
          
       <?php foreach ($posts as $post): ?>
          <div class="col-md-6 post">

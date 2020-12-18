@@ -2,12 +2,17 @@
 /* * * * * * * * * * * * * * *
 * Returns all published posts
 * * * * * * * * * * * * * * */
-function getPublishedPosts() {
+function getPublishedPosts($category) {
 	// use global $conn object in function
 	global $mysqli;
 	$posts = null;
 
-	$sql = "SELECT * FROM posts WHERE published=true order by created_at desc";
+	if(!empty(trim($category)))
+		$sql = "SELECT * FROM posts WHERE category = '". $mysqli->real_escape_string($category)."' and published=true order by created_at desc";
+	else
+		$sql = "SELECT * FROM posts WHERE published=true order by created_at desc";
+
+
 	$result = $mysqli->query($sql);
 
 	// fetch all posts as an associative array called $posts
@@ -67,6 +72,21 @@ function getCommentAnswers($id) {
 		$answers = $result->fetch_all(MYSQLI_ASSOC);
 
 	return $answers;
+}
+
+function getCategories() {
+	// use global $conn object in function
+	global $mysqli;
+	$categories = null;
+
+	$sql = "SELECT * from categories";
+	$result = $mysqli->query($sql);
+
+	// fetch all posts as an associative array called $posts
+	if($result)
+		$categories = $result->fetch_all(MYSQLI_ASSOC);
+
+	return $categories;
 }
 
 ?>
