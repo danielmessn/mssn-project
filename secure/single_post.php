@@ -62,7 +62,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
 				<?php foreach ($comments as $comment): ?>
 					<div>
 						<?php $answers = getCommentAnswers($comment['id']); ?>
-						<p><?php echo $comment['username']?><br><?php echo $comment['content']?></p>
+						<p><?php echo $comment['username']?><br><?php echo htmlentities($comment['content'], ENT_QUOTES, 'UTF-8')?></p>
 						<div class="answers ml-5">
 						<form action="addanswer.php" method="post">
 							<input id="postid2" name="postid" type="text" class="d-none" value="<?php echo $post['id']?>"/>
@@ -74,7 +74,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
 							</div>
 							</form>
 							<?php foreach ($answers as $answer): ?>
-								<p><?php echo $answer['username']?><br><?php echo $answer['content']?></p>
+								<p><?php echo $answer['username']?><br><?php echo htmlentities($answer['content'], ENT_QUOTES, 'UTF-8')?></p>
 							<?php endforeach ?>
 						</div>
 					</div>
