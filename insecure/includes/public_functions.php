@@ -1,7 +1,7 @@
 <?php 
-/* * * * * * * * * * * * * * *
-* Returns all published posts
-* * * * * * * * * * * * * * */
+/* * * * * * * * * * * * * * * * * * * * * * * * *
+* Returns all published posts filtered by category
+* * * * * * * * * * * * * * * * * * * * * * * * */
 function getPublishedPosts($category) {
 	// use global $conn object in function
 	global $mysqli;
@@ -20,6 +20,26 @@ function getPublishedPosts($category) {
 
 	return $posts;
 }
+
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * *
+* Returns all published posts filtered over search word
+* * * * * * * * * * * * * * * * * * * * * * * * * * * */
+function getPublishedPostsFiltered($searchword) {
+	// use global $conn object in function
+	global $mysqli;
+	$posts = null;
+
+	$sql = "SELECT * FROM posts WHERE title like '%$searchword%' or body like '%$searchword%' and published=true order by created_at desc";
+
+	$result = $mysqli->query($sql);
+
+	// fetch all posts as an associative array called $posts
+	if($result)
+		$posts = $result->fetch_all(MYSQLI_ASSOC);
+
+	return $posts;
+}
+
 
 /* * * * * * * * * * * * * * *
 * Returns a single post
@@ -58,6 +78,10 @@ function getComments($id) {
 	return $comments;
 }
 
+
+/* * * * * * * * * * * * * * *
+* Returns answers of a comment
+* * * * * * * * * * * * * * */
 function getCommentAnswers($id) {
 	// use global $conn object in function
 	global $mysqli;
@@ -73,6 +97,10 @@ function getCommentAnswers($id) {
 	return $answers;
 }
 
+
+/* * * * * * * * * * * * * * *
+* Returns the categories
+* * * * * * * * * * * * * * */
 function getCategories() {
 	// use global $conn object in function
 	global $mysqli;
