@@ -63,11 +63,11 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
 					<div>
 						<?php $answers = getCommentAnswers($comment['id']); ?>
 						<p><?php echo $comment['username']?><br><?php echo $comment['content']?>
-						<br><small><?php echo date("j.m.Y h:i", strtotime($comment["created_at"]));?></small></p>
+						<br><small><?php echo date("j.m.Y H:i", strtotime($comment["created_at"]));?></small></p>
 						<div class="answers ml-5">
 							<?php foreach ($answers as $answer): ?>
 								<p><?php echo $answer['username']?><br><?php echo $answer['content']?>
-								<br><small><?php echo date("j.m.Y h:i", strtotime($answer["created_at"]));?></small></p>
+								<br><small><?php echo date("j.m.Y H:i", strtotime($answer["created_at"]));?></small></p>
 							<?php endforeach ?>
 							<form action="addanswer.php" method="post">
 							<input id="postid2" name="postid" type="text" class="d-none" value="<?php echo $post['id']?>"/>
