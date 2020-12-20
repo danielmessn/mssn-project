@@ -1,7 +1,7 @@
 <?php 
-/* * * * * * * * * * * * * * *
-* Returns all published posts
-* * * * * * * * * * * * * * */
+/* * * * * * * * * * * * * * * * * * * * * * * * *
+* Returns all published posts filtered by category
+* * * * * * * * * * * * * * * * * * * * * * * * */
 function getPublishedPosts($category) {
 	// use global $conn object in function
 	global $mysqli;
